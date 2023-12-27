@@ -25,7 +25,7 @@ namespace FruitSupply.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=stud-mssql.sttec.yar.ru,38325;Database=user300_db;User Id=user300_db; Password=user200;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=stud-mssql.sttec.yar.ru,38325;Database=user300_db;User Id=user300_db; Password=user300;TrustServerCertificate=True");
         }
 
     }

@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FruitSupply.Views.AcceptanceGoodsView">
+
+	<Grid RowDefinitions="50, *" ShowGridLines="True">
+		
+		<TextBlock Text="{Binding CurrentDate}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+		<ScrollViewer Background="AntiqueWhite" Grid.Row="1" HorizontalAlignment="Center" Width="600">
+			<Grid RowDefinitions="*, 25,50" ShowGridLines="True">
+
+				<StackPanel>
+					<ItemsControl ItemsSource="{Binding Supplies}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Height="50" Text="some"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+					<Button Background="Transparent" Width="30" Height="30" Content="+" Command="{Binding $parent[UserControl].DataContext.AddNewSupply}"/>
+				</StackPanel>
+				
+				<TextBlock Text="{Binding TotalCost, StringFormat='Итоговая стоимость: \{0\}₽'}}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+				<Button Content="Принять" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Height="40" Grid.Row="2"/>
+			</Grid>
+		</ScrollViewer>
+		
+	</Grid>
+	
+</UserControl>

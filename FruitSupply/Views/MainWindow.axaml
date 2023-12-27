@@ -8,5 +8,14 @@
         x:Class="FruitSupply.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="FruitSupply">
-        <views:MainView />
+
+	<TabControl>
+		<TabItem Header="Приёмка">
+			<ContentControl Content="{Binding AcceptanceGoodsControl}"/>
+		</TabItem>
+		<TabItem Header="Отчёт">
+			<ContentControl Content="{Binding ReportControl}"/>
+		</TabItem>
+	</TabControl>
+	
 </Window>

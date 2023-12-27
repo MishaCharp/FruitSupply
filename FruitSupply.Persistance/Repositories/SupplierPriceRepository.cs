@@ -9,7 +9,7 @@ using TestApp.Persistence.Repositories.Base;
 
 namespace FruitSupply.Persistance.Repositories
 {
-    internal class SupplierPriceRepository : IRepository<SupplierPrice>
+    public class SupplierPriceRepository : IRepository<SupplierPrice>
     {
         private ApplicationDbContext _context;
 
