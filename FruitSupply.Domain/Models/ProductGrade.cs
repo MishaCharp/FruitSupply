@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FruitSupply.Domain.Models
 {
-    public class ProductType : NativeEntity
+    public class ProductGrade : NativeEntity
     {
-        public string Type { get; set; }
+        public string Grade { get; set; }
         public List<Product> Products { get; set; }
     }
 }

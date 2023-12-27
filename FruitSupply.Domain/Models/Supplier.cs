@@ -11,5 +11,8 @@ namespace FruitSupply.Domain.Models
     {
         public string Name { get; set; }
         public string? ContactInfo { get; set; }
+
+        public List<SupplierPrice> SupplierPrices { get; set; }
+        public List<Supply> Supplies { get; set; }
     }
 }
