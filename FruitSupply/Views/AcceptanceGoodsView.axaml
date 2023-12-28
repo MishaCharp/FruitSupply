@@ -9,22 +9,51 @@
 		
 		<TextBlock Text="{Binding CurrentDate}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-		<ScrollViewer Background="AntiqueWhite" Grid.Row="1" HorizontalAlignment="Center" Width="600">
+		<ScrollViewer Background="AntiqueWhite" Grid.Row="1" HorizontalAlignment="Center" Width="650">
 			<Grid RowDefinitions="*, 25,50" ShowGridLines="True">
 
 				<StackPanel>
 					<ItemsControl ItemsSource="{Binding Supplies}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
-								<TextBlock Height="50" Text="some"/>
+								<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6">
+									<DockPanel>
+										<Button Command="{Binding DeleteSelf}" Content="-" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="30" Height="30"/>
+										<ComboBox Margin="5" PlaceholderText="Поставщик" Width="150" ItemsSource="{Binding AllSupplier}" SelectedItem="{Binding SelectedSupplier}">
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Name}"/>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
+										<ComboBox Margin="5" PlaceholderText="Продукт" Width="150" ItemsSource="{Binding AllProduct}" SelectedItem="{Binding SelectedProduct}">
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Name}"/>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
+										<ComboBox Margin="5" PlaceholderText="Мера" Width="100" ItemsSource="{Binding AllUnit}" SelectedItem="{Binding SelectedUnit}">
+											<ComboBox.ItemTemplate>
+												<DataTemplate>
+													<TextBlock Text="{Binding Name}"/>
+												</DataTemplate>
+											</ComboBox.ItemTemplate>
+										</ComboBox>
+										<NumericUpDown Value="{Binding CountUnit}" Minimum="1" Margin="5" Width="150">
+
+										</NumericUpDown>
+									</DockPanel>
+									<TextBlock HorizontalAlignment="Center" Text="{Binding ErrorText}" IsVisible="{Binding IsError}" Foreground="Red" FontWeight="Bold" FontSize="12"/>
+								</StackPanel>
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
-					<Button Background="Transparent" Width="30" Height="30" Content="+" Command="{Binding $parent[UserControl].DataContext.AddNewSupply}"/>
+					<Button HorizontalAlignment="Center" Width="30" Height="30" Content="+" Command="{Binding $parent[UserControl].DataContext.AddNewSupply}"/>
 				</StackPanel>
 				
 				<TextBlock Text="{Binding TotalCost, StringFormat='Итоговая стоимость: \{0\}₽'}}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
-				<Button Content="Принять" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Height="40" Grid.Row="2"/>
+				<Button Command="{Binding AcceptSupply}" Content="Принять" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Height="40" Grid.Row="2"/>
 			</Grid>
 		</ScrollViewer>
 		

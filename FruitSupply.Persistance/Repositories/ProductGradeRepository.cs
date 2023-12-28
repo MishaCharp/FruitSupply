@@ -38,7 +38,7 @@ namespace FruitSupply.Persistance.Repositories
             else return obj;
         }
 
-        public IEnumerable<ProductGrade> GetList() => _context.ProductGrade.ToList();
+        public List<ProductGrade> GetList() => _context.ProductGrade.ToList();
 
         public void Update(ProductGrade item)
         {

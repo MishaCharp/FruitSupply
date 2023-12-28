@@ -38,7 +38,7 @@ namespace FruitSupply.Persistance.Repositories
             else return obj;
         }
 
-        public IEnumerable<Supplier> GetList() => _context.Supplier.ToList();
+        public List<Supplier> GetList() => _context.Supplier.ToList();
 
         public void Update(Supplier item)
         {
