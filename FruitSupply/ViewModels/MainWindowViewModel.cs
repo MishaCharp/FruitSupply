@@ -9,10 +9,12 @@ namespace FruitSupply.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         public AcceptanceGoodsViewModel AcceptanceGoodsControl { get; set; }
+        public ReportViewModel ReportControl { get; set; }
 
         public MainWindowViewModel()
         {
             AcceptanceGoodsControl = new();
+            ReportControl = new();
         }
     }
 }

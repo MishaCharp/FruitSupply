@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FruitSupply.Views.ReportView">
+
+	<Grid RowDefinitions="80, *" ShowGridLines="True">
+
+		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock VerticalAlignment="Center" Text="Период: " FontSize="20" Width="100" Margin="0 12 0 0"/>
+			<StackPanel VerticalAlignment="Center" Width="310" HorizontalAlignment="Left">
+				<TextBlock HorizontalAlignment="Center" Text="Начало"/>
+				<DatePicker SelectedDate="{Binding DateStart}" HorizontalAlignment="Center"/>
+			</StackPanel>
+			<StackPanel VerticalAlignment="Center" Width="310" HorizontalAlignment="Left">
+				<TextBlock HorizontalAlignment="Center" Text="Конец"/>
+				<DatePicker SelectedDate="{Binding DateEnd}" HorizontalAlignment="Center"/>
+			</StackPanel>
+			<Button VerticalAlignment="Center" Command="{Binding GetReport}" Content="Сформировать" Margin="0 18 0 0"/>
+		</DockPanel>
+
+		<ScrollViewer Grid.Row="1" Background="AntiqueWhite" Width="1000">
+			<ItemsControl ItemsSource="{Binding ReportPresenters}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Grid RowDefinitions="*, 5">
+							<StackPanel Grid.Row="0">
+								<TextBlock Margin="5" Text="{Binding Supplier.Name}" FontSize="20" HorizontalAlignment="Left"/>
+								<TextBlock Margin="5" Text="{Binding TotalCost, StringFormat='Сумма: \{0\}₽'}" FontSize="18" HorizontalAlignment="Left"/>
+								<!--Результат по юнитам-->
+								<ItemsControl ItemsSource="{Binding UnitSumResults}" HorizontalAlignment="Left">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<Border Padding="5" Margin="5" Width="200" BorderBrush="Black" BorderThickness="1" Height="60">
+												<StackPanel>
+													<TextBlock Text="{Binding Unit.Name, StringFormat='Мера: [\{0\}]'}" FontSize="14"/>
+													<TextBlock Text="{Binding MaxUnit, StringFormat='Всего: [\{0\}]'}" FontSize="14"/>
+													<TextBlock Text="{Binding FullSumUnit, StringFormat='Цена: [\{0\}₽]'}" FontSize="14"/>
+												</StackPanel>
+											</Border>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+								<!--Результат по всем деталям-->
+								<ItemsControl ItemsSource="{Binding SupplyDetails}" HorizontalAlignment="Center">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Margin="4">
+												<TextBlock Text="{Binding Supply.DeliveryDate, StringFormat='\{0:dd.MM.yyyy\}'}" FontSize="12"/>
+												<TextBlock Text="{Binding Unit.Name, StringFormat='Мера: \{0\}'}" FontSize="12"/>
+												<TextBlock Text="{Binding Product.Name, StringFormat='Продукт: \{0\}'}" FontSize="12"/>
+												<TextBlock Text="{Binding TotalCost, StringFormat='Сумма: \{0\}₽'}" FontSize="12"/>
+												<Separator VerticalAlignment="Bottom"/>
+											</StackPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</StackPanel>
+							<Separator VerticalAlignment="Bottom" Grid.Row="1"/>
+						</Grid>
+
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+		
+	</Grid>
+	
+</UserControl>
